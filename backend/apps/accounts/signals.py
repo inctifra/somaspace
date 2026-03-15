@@ -1,6 +1,7 @@
-from django.dispatch import receiver
-from django.db.models.signals import post_save
 from bunifu_django_auth.models import BunifuUser as User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 from .models import Profile
 
 

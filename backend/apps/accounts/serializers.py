@@ -1,7 +1,8 @@
+from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.serializers import (
     TokenObtainPairSerializer as _TokenObtainPairSerializer,
 )
-from django.shortcuts import get_object_or_404
+
 from apps.accounts.models import Profile
 
 

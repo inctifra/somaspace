@@ -21,18 +21,82 @@ dependencies = [
 
 
 [tool.mypy]
-exclude = [
-    "^one\\.py$",  # TOML's double-quoted strings require escaping backslashes
-    'two\.pyi$',  # but TOML's single-quoted strings do not
-    '^.venv\.',
-    'test/'
-]
-warn_return_any = true
-warn_unused_configs = true
+python_version = "3.12"
+strict = true
+
+# directories to check
+files = ["apps", "tests", "config"]
+
+# ignore missing imports from third-party libs
 ignore_missing_imports = true
 
-[tool.black]
+# useful checks
+warn_unused_configs = true
+warn_return_any = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unreachable = true
+disallow_untyped_defs = true
+disallow_any_generics = true
+
+# plugin example (useful if using pydantic or django)
+plugins = ["mypy_django_plugin.main"]
+
+# improve performance
+cache_dir = ".mypy_cache"
+
+# show errors nicely
+pretty = true
+show_error_codes = true
+
+[tool.django-stubs]
+django_settings_module = "config.settings.production"
+
+[tool.ruff]
 line-length = 88
+target-version = "py312"
+
+# folders to lint
+src = ["apps", "tests", "config"]
+
+# files to ignore
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "build",
+    "dist",
+    "migrations"
+]
+
+
+[tool.ruff.lint]
+# enable important rule groups
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # import sorting
+    "B",   # bugbear
+    "UP",  # pyupgrade
+    "C4",  # comprehensions
+    "SIM", # simplifications
+]
+
+ignore = [
+    "E501", # line length handled by formatter
+]
+
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+docstring-code-format = true
+
+
+[tool.ruff.lint.isort]
+known-first-party = ["apps"]
+combine-as-imports = true
 
 [tool.isort]
 profile = "black"
@@ -40,10 +104,14 @@ profile = "black"
 [dependency-groups]
 dev = [
     "django-factory-boy>=1.0.0",
+    "django-stubs>=5.2.9",
+    "django-stubs-ext>=5.2.9",
     "factory-boy>=3.3.3",
     "faker>=40.11.0",
-    "mypy>=1.19.1",
+    "mypy<1.19",
+    "pre-commit>=4.5.1",
     "pytest-cov>=7.0.0",
     "pytest-django>=4.12.0",
+    "rav>=0.4.3",
     "ruff>=0.15.6",
 ]

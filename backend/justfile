@@ -1,0 +1,11 @@
+lint:
+    uv run ruff check .
+
+format:
+    uv run ruff format .
+
+types:
+    uv run mypy .
+
+fix:
+    uv run ruff check . --fix

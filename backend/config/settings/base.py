@@ -1,7 +1,11 @@
+import datetime
 from pathlib import Path
+
+import django_stubs_ext
 import environ
 from django.utils.translation import gettext_lazy as _
-import datetime
+
+django_stubs_ext.monkeypatch()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -47,7 +51,18 @@ THIRD_PARTY_APPS = [
     "corsheaders",
 ]
 
-LOCAL_APPS = ["apps.accounts", "apps.core"]
+LOCAL_APPS = [
+    "apps.accounts",
+    "apps.core",
+    "apps.institutions",
+    "apps.academics",
+    "apps.resources",
+    "apps.social",
+    "apps.clubs",
+    "apps.messaging",
+    "apps.notifications",
+    "apps.moderation",
+]
 
 
 INSTALLED_APPS = [

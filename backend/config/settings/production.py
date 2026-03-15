@@ -1,7 +1,7 @@
 import ssl
 
 from .base import *  # noqa: F403
-from .base import DATABASES, env, SPECTACULAR_SETTINGS, TIME_ZONE, USE_TZ
+from .base import DATABASES, SPECTACULAR_SETTINGS, TIME_ZONE, USE_TZ, env
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -131,4 +131,4 @@ STORAGES = {
 
 # DJANGO APPLICATION VERSION
 # ---------------------------------------------
-DJANGO_APP_VERSION=env.str("DJANGO_APP_VERSION", default="v1")
+DJANGO_APP_VERSION = env.str("DJANGO_APP_VERSION", default="v1")

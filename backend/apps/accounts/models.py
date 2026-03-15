@@ -1,16 +1,21 @@
-from django.db import models
 from bunifu_django_auth.models import BunifuUser as User
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    fname = models.CharField(verbose_name=_("First Name"), blank=True, null=True, max_length=255)
-    lname = models.CharField(verbose_name=_("Last Name"), blank=True, null=True, max_length=255)
-    role = models.CharField(max_length=100, choices=(
-        ("student", "Student"),
-        ("admin", "Admin")
-    ), default="student")
+    fname = models.CharField(
+        verbose_name=_("First Name"), blank=True, null=True, max_length=255
+    )
+    lname = models.CharField(
+        verbose_name=_("Last Name"), blank=True, null=True, max_length=255
+    )
+    role = models.CharField(
+        max_length=100,
+        choices=(("student", "Student"), ("admin", "Admin")),
+        default="student",
+    )
 
     def __str__(self):
         return (

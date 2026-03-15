@@ -1,15 +1,14 @@
-from django.contrib import admin
-from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
+from django.urls import include, path
 from drf_spectacular.views import SpectacularSwaggerView
 
 from apps.accounts.views import LoginTokenView
-from .drf.views import SpectacularAPIView
 from apps.core._admin import somaspace_admin_site
 
+from .drf.views import SpectacularAPIView
 
 urlpatterns = [
     # Django Admin

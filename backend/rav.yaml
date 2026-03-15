@@ -1,0 +1,3 @@
+scripts:
+  ruff-fix: uv run ruff check --fix
+  ruff-format: uv run ruff format

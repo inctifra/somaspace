@@ -1,14 +1,11 @@
 from allauth.account.decorators import secure_admin_login
 from django.conf import settings
 from django.contrib import admin
-from django.contrib.auth import admin as auth_admin
+from django.contrib.auth import admin as auth_admin, get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from .forms import UserAdminChangeForm
-from .forms import UserAdminCreationForm
+from .forms import UserAdminChangeForm, UserAdminCreationForm
 from .models import Profile
-
-from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
@@ -39,7 +36,7 @@ class UserAdmin(auth_admin.UserAdmin):
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["email",  "is_superuser"]
+    list_display = ["email", "is_superuser"]
     search_fields = ["email"]
     ordering = ["id"]
     add_fieldsets = (
@@ -58,5 +55,3 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ("user", "fname", "lname", "role")
     search_fields = ("user__email", "fname", "lname", "role")
     autocomplete_fields = ("user",)
-
-
