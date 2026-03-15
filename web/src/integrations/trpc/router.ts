@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { createTRPCRouter, publicProcedure } from './init'
 
 import type { TRPCRouterRecord } from '@trpc/server'
+import authRouter from './(auth)/router'
 
 const todos = [
   { id: 1, name: 'Get groceries' },
@@ -23,5 +24,6 @@ const todosRouter = {
 
 export const trpcRouter = createTRPCRouter({
   todos: todosRouter,
+  auth: authRouter
 })
 export type TRPCRouter = typeof trpcRouter

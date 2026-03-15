@@ -7,7 +7,7 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-
+import { TooltipProvider } from "@/components/ui/tooltip"
 import TanStackQueryProvider from "../integrations/tanstack-query/root-provider";
 
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
@@ -38,7 +38,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "TanStack Start Starter",
+        title: "Somaspace",
+      },
+       {
+        name: "description",
+        content: "Make learning fun access all higher learning institutions in kenya.",
       },
     ],
     links: [
@@ -49,6 +53,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     ],
   }),
   shellComponent: RootDocument,
+  notFoundComponent: ()=> <h1>Not found</h1>
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -61,7 +66,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
         <TanStackQueryProvider>
           <Header />
-          {children}
+           <TooltipProvider>{children}</TooltipProvider>
           <Footer />
           <TanStackDevtools
             config={{
